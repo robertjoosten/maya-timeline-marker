@@ -9,6 +9,9 @@ U S A G E:
         cmds.evalDeferred(
             "import rjTimelineMarker; rjTimelineMarker.install()"
         )
+        
+    This line of code can also be added in the userSetup.py if you would like 
+    the functionality to persist.
 
 N O T E:
     The UI elements are added to the timeline menu and can be accessed by 
