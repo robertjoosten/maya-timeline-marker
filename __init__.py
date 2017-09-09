@@ -128,12 +128,12 @@ def clear(timelineMarker):
 
     :param TimelineMarker timelineMarker: decorator handles this argument
     """
-    timelineMarker.clear(frame)
+    timelineMarker.clear()
         
 # ---------------------------------------------------------------------------- 
 
 @getTimelineMarker
-def set(frames=[], colors=[], comments=[]):
+def set(timelineMarker, frames=[], colors=[], comments=[]):
     """
     Use this function to overwrite the entire marker data set with the 
     provided arguments. All existing markers will be removed.
