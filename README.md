@@ -1,7 +1,8 @@
 # rjTimelineMarker
 Create coloured markers on top of Maya's native timeline. Comments can be added to each marker that appear as tool tips.
 
-<a href="https://vimeo.com/126181906" target="_blank"><p align="center"><img src="https://i.vimeocdn.com/video/516537540_640.webp" alt="Click on image for video"></p></a><a href="https://vimeo.com/126181906" target="_blank"><p align="center">Click for video</p></a>
+<p align="center"><img src="https://github.com/robertjoosten/rjTimelineMarker/blob/master/README.gif"></p>
+<a href="https://vimeo.com/126181906" target="_blank"><p align="center">Click for video</p></a>
 
 ## Installation
 Copy the **rjTimelineMarker** folder to your Maya scripts directory:
