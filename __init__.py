@@ -1,6 +1,6 @@
 """					
 I N S T A L L A T I O N:
-    Copy the "rjTimelineMarker.py" to your Maya scripts directory:
+    Copy the "rjTimelineMarker" folder to your Maya scripts directory:
         C:\Users\<USER>\Documents\maya\scripts
 
 U S A G E:
