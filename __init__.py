@@ -39,7 +39,9 @@ C O M M A N D  L I N E:
     import rjTimelineMarker; rjTimelineMarker.set(frames, colors, comments)
 """
 
-# ----------------------------------------------------------------------------
+__author__    = "Robert Joosten"
+__version__   = "0.9.9"
+__email__     = "rwm.joosten@gmail.com"
 
 from functools import wraps
 from . import ui
