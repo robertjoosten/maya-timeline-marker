@@ -1,0 +1,17 @@
+rjTimelineMarker package
+========================
+
+Submodules
+----------
+
+.. toctree::
+
+   rjTimelineMarker.ui
+
+Module contents
+---------------
+
+.. automodule:: rjTimelineMarker
+    :members:
+    :undoc-members:
+    :show-inheritance:

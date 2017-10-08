@@ -3,7 +3,7 @@ from maya import OpenMaya, OpenMayaUI, cmds, mel
 
 # import pyside, do qt version check for maya 2017 >
 qtVersion = cmds.about(qtVersion=True)
-if qtVersion.startswith("4"):
+if qtVersion.startswith("4") or type(qtVersion) != str:
     from PySide.QtGui import *
     from PySide.QtCore import *
     import shiboken
@@ -106,7 +106,8 @@ def remap(value, oMin, oMax, nMin, nMax):
 # ----------------------------------------------------------------------------
     
 class TimelineMarker(QWidget):
-    def __init__(self, parent=getTimeline()):
+    def __init__(self):
+        parent = getTimeline()
         QWidget.__init__(self, parent)
         
         # variables
@@ -511,9 +512,9 @@ class TimelineMarker(QWidget):
         QWidget.deleteLater(self)
 
 class TimelineMarkerMenu(object):
-    def __init__(self, parent, menu=getTimelineMenu()):    
+    def __init__(self, parent):    
         # variable
-        self.menu = menu
+        self.menu = getTimelineMenu()
         self._buttons = []
         
         # separator

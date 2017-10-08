@@ -1,0 +1,486 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>rjTimelineMarker.ui module &#8212; rjTimelineMarker  &#39;&#39; documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     ' &#39;&#39;',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">rjTimelineMarker  &#39;&#39; documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-rjTimelineMarker.ui">
+<span id="rjtimelinemarker-ui-module"></span><h1>rjTimelineMarker.ui module<a class="headerlink" href="#module-rjTimelineMarker.ui" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="rjTimelineMarker.ui.TimelineMarker">
+<em class="property">class </em><code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">TimelineMarker</code><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">PySide.QtGui.QWidget</span></code></p>
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>frame</em>, <em>color</em>, <em>comment</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a marker based on the provided arguments. If the frames are 
+already marked this information will be overwritten.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>frame</strong> (<em>int</em>) – Frame number</li>
+<li><strong>color</strong> (<em>list</em>) – Color list ( RGB )</li>
+<li><strong>comment</strong> (<em>str</em>) – Tooltip comment</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.addCallbacks">
+<code class="descname">addCallbacks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.addCallbacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add callbacks that will clear all marker information on the timeline 
+every time a new file is created or a file is opened. It also adds 
+callback to determine if the markers are sliding.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.addFromUI">
+<code class="descname">addFromUI</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.addFromUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the frame, color and comments arguments from the UI and add
+marker(s).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all markers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.deleteLater">
+<code class="descname">deleteLater</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.deleteLater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subclass the deleteLater function to first remove the callback, 
+this callback shouldn’t be floating around and should be deleted
+with the widget.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take all the marker information and fill in the QWidget covering the 
+timeline. This function will be called by the update and paintEvent 
+function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.event">
+<code class="descname">event</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subclass the event function in order to capture the ToolTip event. 
+The hovered frame is calculated and checked to see if it is marked 
+and commented, if so the toolTip will show.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.getDataFromFrame">
+<code class="descname">getDataFromFrame</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.getDataFromFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get data from frame, this includes the index within the lists, the
+color and comment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>frame</strong> (<em>int</em>) – Frame to get data from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">index, frame, color, comment</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.paintEvent">
+<code class="descname">paintEvent</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.paintEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.pressCommand">
+<code class="descname">pressCommand</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.pressCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Press callback on the timeline, this callback registers the current
+selected frames, if the user settings determine that the frame range
+is not important ( no automated shifting of markers ), no range will 
+be stored.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.readFromCurrentScene">
+<code class="descname">readFromCurrentScene</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.readFromCurrentScene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Marker data can be stored in the Maya’s scenes themselves, the 
+fileInfo command is used for this and the data is stored under the 
+“timelineMarker” argument. This data can be decoded with json and 
+split it the frames, colours and comments.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.releaseCommand">
+<code class="descname">releaseCommand</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.releaseCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release callback on the timeline, together with the press command the
+difference can be extracted and the markers can be moved accordingly. 
+Theuser settings will be checked if the moving of markers is 
+appropriate.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>frame</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a marker based on the provided arguments.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>frame</strong> (<em>int</em>) – Frame number</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.removeCallbacks">
+<code class="descname">removeCallbacks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.removeCallbacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove Callbacks.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.removeFromUI">
+<code class="descname">removeFromUI</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.removeFromUI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the frame, color and comments arguments from the UI and remove
+marker(s).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.saveToCurrentScene">
+<code class="descname">saveToCurrentScene</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.saveToCurrentScene" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all the marker information ( frames, comments and colors ) and 
+store this with the fileInfo command in the maya file. Data is 
+stored under the “timelineMarker” argument.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rjTimelineMarker.ui.TimelineMarker.staticMetaObject">
+<code class="descname">staticMetaObject</code><em class="property"> = &lt;PySide.QtCore.QMetaObject object&gt;</em><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.staticMetaObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarker.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarker.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subclass update to simultaniously store all of the marker data into
+the current scene.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu">
+<em class="property">class </em><code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">TimelineMarkerMenu</code><span class="sig-paren">(</span><em>parent</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu.addButton">
+<code class="descname">addButton</code><span class="sig-paren">(</span><em>text</em>, <em>command=None</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu.addButton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add button QAction to the menu.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>text</strong> (<em>str</em>) – Button text</li>
+<li><strong>command</strong> (<em>func</em>) – Function to call when button is released.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Button</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">QAction</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu.addColorPicker">
+<code class="descname">addColorPicker</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu.addColorPicker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add color picker QAction to the menu.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Color picker</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">QAction</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu.addCommentField">
+<code class="descname">addCommentField</code><span class="sig-paren">(</span><em>placeholderText</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu.addCommentField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add comment field QAction to the menu.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>placeholderText</strong> (<em>str</em>) – Placeholder text</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">QAction, QLineEdit</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu.addSeparator">
+<code class="descname">addSeparator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu.addSeparator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add seperator QAction to the menu.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Seperator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">QAction</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu.buttons">
+<code class="descname">buttons</code><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu.buttons" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all marker related QActions from the timeline menu.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Buttons</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu.deleteLater">
+<code class="descname">deleteLater</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu.deleteLater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all marker related QActions from the timeline menu.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rjTimelineMarker.ui.TimelineMarkerMenu.picker">
+<code class="descname">picker</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.TimelineMarkerMenu.picker" title="Permalink to this definition">¶</a></dt>
+<dd><p>The picker will change the color of the button and will store the 
+rgb values in a property, this property will be read when a marker is 
+added via the menu.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="rjTimelineMarker.ui.getMayaTimeline">
+<code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">getMayaTimeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.getMayaTimeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the object name of Maya’s timeline.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Object name of Maya’s timeline</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rjTimelineMarker.ui.getTimeline">
+<code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">getTimeline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.getTimeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the QWidget of Maya’s timeline. For versions 2016.5 and later the 
+first QWidget child of the timeline should be returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">QWidget of Maya’s timeline</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">QWidget</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rjTimelineMarker.ui.getTimelineMenu">
+<code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">getTimelineMenu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.getTimelineMenu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the QWidget of Maya’s timeline menu. An initialization mel function
+has to be called to create and populate the menu before adding 
+functionality.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">QWidget of Maya’s timeline menu</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">QWidget</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rjTimelineMarker.ui.getTimelineRange">
+<code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">getTimelineRange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.getTimelineRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the current timeline selection and convert it into a range list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Frame range of timeline selection</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rjTimelineMarker.ui.mayaToQT">
+<code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">mayaToQT</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.mayaToQT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maya -&gt; QWidget</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) – Maya name of an ui object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">QWidget of parsed Maya name</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">QWidget</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rjTimelineMarker.ui.remap">
+<code class="descclassname">rjTimelineMarker.ui.</code><code class="descname">remap</code><span class="sig-paren">(</span><em>value</em>, <em>oMin</em>, <em>oMax</em>, <em>nMin</em>, <em>nMax</em><span class="sig-paren">)</span><a class="headerlink" href="#rjTimelineMarker.ui.remap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remap a value based on input minimin and maximum, the result is converted
+to an integer since markers can only live as a whole frame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>value</strong> (<em>float</em>) – Value to remap</li>
+<li><strong>oMin</strong> (<em>float</em>) – Original minimum</li>
+<li><strong>oMax</strong> (<em>float</em>) – Original maximum</li>
+<li><strong>nMin</strong> (<em>float</em>) – New minimum</li>
+<li><strong>nMax</strong> (<em>float</em>) – New maximum</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">remapped value</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/rjTimelineMarker.ui.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">rjTimelineMarker  &#39;&#39; documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, &#39;Robert Joosten&#39;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+  </body>
+</html>

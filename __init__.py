@@ -1,42 +1,62 @@
-"""					
-I N S T A L L A T I O N:
-    Copy the "rjTimelineMarker" folder to your Maya scripts directory:
-        C:\Users\<USER>\Documents\maya\scripts
+"""			
+Create coloured markers on top of Maya's native timeline. Comments can be 
+added to each marker that appear as tool tips.
 
-U S A G E:
-    Add the interface and functionality to Maya:
-        import maya.cmds as cmds
-        cmds.evalDeferred(
-            "import rjTimelineMarker; rjTimelineMarker.install()"
-        )
-        
-    This line of code can also be added in the userSetup.py if you would like 
-    the functionality to persist.
+.. figure:: https://github.com/robertjoosten/rjTimelineMarker/raw/master/README.gif
+   :align: center
+   
+`Link to Video <https://vimeo.com/126181906>`_
 
-N O T E:
-    The UI elements are added to the timeline menu and can be accessed by 
-    right clicking on the timeline. You have the option to change the color 
-    of your marker points and also add comments where necessary. ToolTips 
-    will appear to show the comment while hovering over the timeline. 
-    The markers are stored in the maya file.
+Installation
+============
+Copy the **rjTimelineMarker** folder to your Maya scripts directory
+::
+    C:/Users/<USER>/Documents/maya/scripts
+    
+Usage
+=====
+Add the interface and functionality to Maya
+::
+    import maya.cmds as cmds
+    cmds.evalDeferred(
+        "import rjTimelineMarker; rjTimelineMarker.install()"
+    )
+    
+This line of code can also be added in the userSetup.py if you would like 
+the functionality to persist.
+    
+Note
+====
+The UI elements are added to the timeline menu and can be accessed by 
+right clicking on the timeline. You have the option to change the color 
+of your marker points and also add comments where necessary. ToolTips 
+will appear to show the comment while hovering over the timeline. 
+The markers are stored in the maya file.
 
-H O T K E Y:
-    The hotkey function can be used to setup hotkeys to manage the timeline 
-    markers. There are three options, this is to either add, remove or clear 
-    the markers. Make sure the language is set to python.
-
-    import rjTimelineMarker; rjTimelineMarker.hotkey("add")
-    import rjTimelineMarker; rjTimelineMarker.hotkey("remove")
-    import rjTimelineMarker; rjTimelineMarker.hotkey("clear")
-
-C O M M A N D  L I N E:
-    The following functions can be used outside of the ui. Make sure the 
-    language is set to python.
-
-    import rjTimelineMarker; rjTimelineMarker.add(frame, color, comment)
-    import rjTimelineMarker; rjTimelineMarker.remove(frames)
-    import rjTimelineMarker; rjTimelineMarker.clear()
-    import rjTimelineMarker; rjTimelineMarker.set(frames, colors, comments)
+Hotkey
+======
+The hotkey function can be used to setup hotkeys to manage the timeline 
+markers. There are three options, this is to either add, remove or clear 
+the markers. Make sure the language is set to python.
+::
+    import rjTimelineMarker
+    rjTimelineMarker.hotkey('add')
+    rjTimelineMarker.hotkey('remove')
+    rjTimelineMarker.hotkey('clear')
+    
+Command Line
+============
+The following functions can be used outside of the ui. Make sure the 
+language is set to python.
+::
+    import rjTimelineMarker 
+    rjTimelineMarker.add(frame, color, comment)
+    rjTimelineMarker.remove(frames)
+    rjTimelineMarker.clear()
+    rjTimelineMarker.set(frames, colors, comments)
+    
+Code
+====
 """
 
 __author__    = "Robert Joosten"
