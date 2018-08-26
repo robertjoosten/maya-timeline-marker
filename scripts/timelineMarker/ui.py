@@ -1,114 +1,25 @@
 import json
 from maya import OpenMaya, OpenMayaUI, cmds, mel
+from . import utils
 
-# import pyside, do qt version check for maya 2017 >
-qtVersion = cmds.about(qtVersion=True)
-if qtVersion.startswith("4") or type(qtVersion) not in [str, unicode]:
-    from PySide.QtGui import *
-    from PySide.QtCore import *
-    import shiboken
-else:
-    from PySide2.QtGui import *
-    from PySide2.QtCore import *
-    from PySide2.QtWidgets import *
-    import shiboken2 as shiboken
-    
-# ----------------------------------------------------------------------------    
-    
-def mayaToQT(name):
-    """
-    Maya -> QWidget
-
-    :param str name: Maya name of an ui object
-    :return: QWidget of parsed Maya name
-    :rtype: QWidget
-    """
-    ptr = OpenMayaUI.MQtUtil.findControl(name)
-    if ptr is None:         
-        ptr = OpenMayaUI.MQtUtil.findLayout(name)    
-    if ptr is None:         
-        ptr = OpenMayaUI.MQtUtil.findMenuItem(name)
-    if ptr is not None:     
-        return shiboken.wrapInstance(long(ptr), QWidget)
 
 # ----------------------------------------------------------------------------
 
-def getMayaTimeline():
-    """
-    Get the object name of Maya's timeline.
-    
-    :return: Object name of Maya's timeline
-    :rtype: str
-    """
-    return mel.eval("$tmpVar=$gPlayBackSlider")
 
-def getTimeline():
-    """
-    Get the QWidget of Maya's timeline. For versions 2016.5 and later the 
-    first QWidget child of the timeline should be returned.
-    
-    :return: QWidget of Maya's timeline
-    :rtype: QWidget
-    """
-    # convert name to widget
-    qtTimeline = mayaToQT(getMayaTimeline())
-    
-    # return child for Maya 2016.5 > 
-    for child in qtTimeline.children():
-        if type(child) == QWidget:
-            return child
-    
-    return qtTimeline
+global TIMELINE_MARKER
+TIMELINE_MARKER = None
 
-def getTimelineMenu():
-    """
-    Get the QWidget of Maya's timeline menu. An initialization mel function
-    has to be called to create and populate the menu before adding 
-    functionality.
-    
-    :return: QWidget of Maya's timeline menu
-    :rtype: QWidget
-    """
-    # initialize timeline menu
-    mel.eval("updateTimeSliderMenu TimeSliderMenu;")
-    
-    # get time slider menu
-    qtTimelineMenu = mayaToQT("TimeSliderMenu")
-    return qtTimelineMenu
-    
-def getTimelineRange():
-    """
-    Read the current timeline selection and convert it into a range list.
-
-    :return: Frame range of timeline selection
-    :rtype: list
-    """
-    r = cmds.timeControl(getMayaTimeline(), query=True, ra=True )
-    return range(int(r[0]), int(r[1]))
-
-# ----------------------------------------------------------------------------
-
-def remap(value, oMin, oMax, nMin, nMax):
-    """
-    Remap a value based on input minimin and maximum, the result is converted
-    to an integer since markers can only live as a whole frame.
-    
-    :param float value: Value to remap
-    :param float oMin: Original minimum
-    :param float oMax: Original maximum
-    :param float nMin: New minimum
-    :param float nMax: New maximum
-    :return: remapped value
-    :rtype: int
-    """
-    return int((((value - oMin) * (nMax - nMin)) / (oMax - oMin)) + nMin)
 
 # ----------------------------------------------------------------------------
     
-class TimelineMarker(QWidget):
+    
+class TimelineMarker(utils.QWidget):
     def __init__(self):
-        parent = getTimeline()
-        QWidget.__init__(self, parent)
+        # get parent
+        utils.QWidget.__init__(self)
+        
+        # variables
+        self.setObjectName("timelineMarker") 
         
         # variables
         self.start = None
@@ -124,25 +35,6 @@ class TimelineMarker(QWidget):
         self.openID = None
 
         self._range = None
-        
-        # get layout
-        layout = parent.layout()
-
-        # create layout if non exists
-        if not layout:
-            layout = QVBoxLayout(parent)
-            layout.setContentsMargins(0, 0, 0, 0)
-            parent.setLayout(layout)
-
-        # find and remove timelineMarker instances
-        for child in parent.children():
-            if child.objectName() == "timelineMarkers":
-                child.menu.deleteLater()
-                child.deleteLater()
-                    
-        # add self to parent layout
-        layout.addWidget(self)
-        self.setObjectName("timelineMarkers") 
 
         # set menu
         self.menu = TimelineMarkerMenu(self)
@@ -151,8 +43,6 @@ class TimelineMarker(QWidget):
         self.readFromCurrentScene()
         self.addCallbacks()
 
-        print "Timeline Marker: installation succeeded"
-   
     # ------------------------------------------------------------------------
         
     def readFromCurrentScene(self, *args):
@@ -226,8 +116,8 @@ class TimelineMarker(QWidget):
         The hovered frame is calculated and checked to see if it is marked 
         and commented, if so the toolTip will show.
         """
-        if event.type() == QEvent.ToolTip:
-            QToolTip.hideText() 
+        if event.type() == utils.QEvent.ToolTip:
+            utils.utils.QToolTip.hideText() 
             
             # find frame at mouse pointer
             frame = int(((event.x()-(self.total*0.005))/self.step)+self.start)
@@ -236,9 +126,9 @@ class TimelineMarker(QWidget):
             _, _, _, comment = self.getDataFromFrame(frame)
             
             # show tooltip
-            QToolTip.showText(event.globalPos(), comment, self)
+            utils.QToolTip.showText(event.globalPos(), comment, self)
             
-        return QWidget.event(self, event)
+        return utils.QWidget.event(self, event)
         
     # ------------------------------------------------------------------------
         
@@ -252,7 +142,7 @@ class TimelineMarker(QWidget):
         comment = self.menu.commentL.text()
         
         # get selected frames
-        for f in getTimelineRange():
+        for f in utils.getTimelineRange():
             self.add(f, color, comment)
 
         # reset menu
@@ -289,7 +179,7 @@ class TimelineMarker(QWidget):
         Get the frame, color and comments arguments from the UI and remove
         marker(s).
         """
-        for f in getTimelineRange():
+        for f in utils.getTimelineRange():
             self.remove(f)
 
     def remove(self, frame):
@@ -333,7 +223,7 @@ class TimelineMarker(QWidget):
         """
         # get visible range
         rangeVisible = cmds.timeControl(
-            getMayaTimeline(), 
+            utils.getMayaTimeline(), 
             q=True, 
             rangeVisible=True
         )
@@ -343,7 +233,7 @@ class TimelineMarker(QWidget):
             return
 
         # save range
-        self._range = getTimelineRange()
+        self._range = utils.getTimelineRange()
 
     def releaseCommand(self, *args):
         """
@@ -358,7 +248,7 @@ class TimelineMarker(QWidget):
 
         # get begin and end range
         beginRange = self._range[:]
-        endRange = getTimelineRange()
+        endRange = utils.getTimelineRange()
 
         # reset stored range
         self._range = None
@@ -368,7 +258,7 @@ class TimelineMarker(QWidget):
         endLenght = len(endRange)
         
         rangeVisible = cmds.timeControl(
-            getMayaTimeline(), 
+            utils.getMayaTimeline(), 
             q=True, 
             rangeVisible=True
         )
@@ -387,7 +277,7 @@ class TimelineMarker(QWidget):
             if beginLength == 1:
                 remappedFrame = endRange[0]
             else:
-                remappedFrame = remap(
+                remappedFrame = utils.remap(
                     frame,
                     beginRange[0], 
                     beginRange[-1], 
@@ -412,7 +302,7 @@ class TimelineMarker(QWidget):
 
     def draw(self):
         """
-        Take all the marker information and fill in the QWidget covering the 
+        Take all the marker information and fill in the utils.QWidget covering the 
         timeline. This function will be called by the update and paintEvent 
         function.
         """
@@ -430,17 +320,17 @@ class TimelineMarker(QWidget):
             return
         
         # setup painter and pen
-        painter = QPainter(self)
-        pen = QPen()
+        painter = utils.QPainter(self)
+        pen = utils.QPen()
         pen.setWidth(self.step)
             
         # draw Lines for each frame
         for f, c in zip(self.frames, self.colors):
-            pen.setColor(QColor(c[0], c[1], c[2], 50))
+            pen.setColor(utils.QColor(c[0], c[1], c[2], 50))
         
             # calculate line position
             pos = (f-self.start+0.5) * self.step + (self.total*0.005)
-            line = QLineF(QPointF(pos, 0), QPointF(pos, 100))
+            line = utils.QLineF(utils.QPointF(pos, 0), utils.QPointF(pos, 100))
             
             painter.setPen( pen )
             painter.drawLine( line )
@@ -467,7 +357,7 @@ class TimelineMarker(QWidget):
 
         # timeline press callbacks
         cmds.timeControl(
-            getMayaTimeline(), 
+            utils.getMayaTimeline(), 
             edit=True, 
             pressCommand=self.pressCommand,
             releaseCommand=self.releaseCommand,
@@ -486,7 +376,7 @@ class TimelineMarker(QWidget):
 
         # remove timeline callbacks
         cmds.timeControl(
-            getMayaTimeline(), 
+            utils.getMayaTimeline(), 
             edit=True, 
             pressCommand="", 
             releaseCommand=""
@@ -496,11 +386,11 @@ class TimelineMarker(QWidget):
     
     def update(self):
         """
-        Subclass update to simultaniously store all of the marker data into
+        Subclass update to simultaneously store all of the marker data into
         the current scene.
         """
         self.saveToCurrentScene()
-        QWidget.update(self)
+        utils.QWidget.update(self)
         
     def deleteLater(self):
         """
@@ -509,12 +399,13 @@ class TimelineMarker(QWidget):
         with the widget.
         """
         self.removeCallbacks()
-        QWidget.deleteLater(self)
+        utils.QWidget.deleteLater(self)
 
+        
 class TimelineMarkerMenu(object):
     def __init__(self, parent):    
         # variable
-        self.menu = getTimelineMenu()
+        self.menu = utils.getTimelineMenu()
         self._buttons = []
         
         # separator
@@ -571,10 +462,10 @@ class TimelineMarkerMenu(object):
         :return: QAction, QLineEdit
         :rtype: tuple
         """
-        edit = QLineEdit(self.menu)
+        edit = utils.QLineEdit(self.menu)
         edit.setPlaceholderText(placeholderText)
         
-        button = QWidgetAction(self.menu)
+        button = utils.QWidgetAction(self.menu)
         button.setDefaultWidget(edit)
         
         self.menu.addAction(button)
@@ -591,22 +482,22 @@ class TimelineMarkerMenu(object):
         button = self.addButton("Pick Color", self.picker)
         button.setProperty("rgb", [0, 255, 0])
         
-        pixmap = QPixmap(12, 12)
-        pixmap.fill(QColor(0, 255, 0))
+        pixmap = utils.QPixmap(12, 12)
+        pixmap.fill(utils.QColor(0, 255, 0))
         
-        button.setIcon(QIcon(pixmap))
+        button.setIcon(utils.QIcon(pixmap))
         return button
         
     # ------------------------------------------------------------------------
     
     def addSeparator(self):
         """
-        Add seperator QAction to the menu.
+        Add separator QAction to the menu.
         
-        :return: Seperator
+        :return: Separator
         :rtype: QAction
         """
-        separator = QAction(self.menu)
+        separator = utils.QAction(self.menu)
         separator.setSeparator( True )
         
         self.menu.addAction(separator)
@@ -622,7 +513,7 @@ class TimelineMarkerMenu(object):
         :return: Button
         :rtype: QAction
         """
-        button = QAction(self.menu)
+        button = utils.QAction(self.menu)
         button.setText(text)
         
         if command:
@@ -641,19 +532,19 @@ class TimelineMarkerMenu(object):
         added via the menu.
         """
         rgbL = self.colorA.property("rgb")
-        rgbQt = QColor(rgbL[0], rgbL[1], rgbL[2])
+        rgbQt = utils.QColor(rgbL[0], rgbL[1], rgbL[2])
         
-        dialog = QColorDialog.getColor(rgbQt, self.menu)
+        dialog = utils.QColorDialog.getColor(rgbQt, self.menu)
         if not dialog.isValid():
             return
             
         rgb = [dialog.red(), dialog.green(), dialog.blue()]
 
-        pixmap = QPixmap(12, 12)
-        pixmap.fill(QColor(rgb[0], rgb[1], rgb[2]))
+        pixmap = utils.QPixmap(12, 12)
+        pixmap.fill(utils.QColor(rgb[0], rgb[1], rgb[2]))
         
         self.colorA.setProperty("rgb", rgb)
-        self.colorA.setIcon(QIcon(pixmap))
+        self.colorA.setIcon(utils.QIcon(pixmap))
             
     # ------------------------------------------------------------------------
         
@@ -664,3 +555,30 @@ class TimelineMarkerMenu(object):
         for button in self.buttons:
             button.deleteLater()
             
+            
+def install():
+    """
+    Add the marker functionality to Maya's native timeline menu. 
+    
+    :raises RuntimeError: When the timeline marker is already installed.
+    """
+    global TIMELINE_MARKER
+    
+    # validate timeline marker
+    if TIMELINE_MARKER:
+        raise RuntimeError("Timeline marker is already installed!")
+    
+    # get parent
+    parent = utils.getTimeline()
+    layout = parent.layout()
+    
+    # create layout if non exists
+    if not layout:
+        layout = utils.QVBoxLayout(parent)
+        layout.setContentsMargins(0, 0, 0, 0)
+        parent.setLayout(layout)
+    
+    # create timeline marker
+    TIMELINE_MARKER = TimelineMarker()
+    TIMELINE_MARKER.setParent(parent)
+    layout.addWidget(TIMELINE_MARKER)

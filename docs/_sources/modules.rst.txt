@@ -1,7 +1,7 @@
-rjTimelineMarker
-================
+timelineMarker
+==============
 
 .. toctree::
    :maxdepth: 4
 
-   rjTimelineMarker
+   timelineMarker

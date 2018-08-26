@@ -1,10 +1,10 @@
-.. rjTimelineMarker documentation master file, created by
-   sphinx-quickstart on Sun Oct 08 23:44:58 2017.
+.. timelineMarker documentation master file, created by
+   sphinx-quickstart on Sun Aug 26 13:01:10 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to rjTimelineMarker's documentation!
-============================================
+Welcome to timelineMarker's documentation!
+==========================================
 
 .. toctree::
    :maxdepth: 2

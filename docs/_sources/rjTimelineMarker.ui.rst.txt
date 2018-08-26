@@ -1,7 +1,0 @@
-rjTimelineMarker\.ui module
-===========================
-
-.. automodule:: rjTimelineMarker.ui
-    :members:
-    :undoc-members:
-    :show-inheritance:

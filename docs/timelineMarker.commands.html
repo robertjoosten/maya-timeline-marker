@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>timelineMarker.commands module &#8212; timelineMarker  &#39;&#39; documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     ' &#39;&#39;',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">timelineMarker  &#39;&#39; documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-timelineMarker.commands">
+<span id="timelinemarker-commands-module"></span><h1>timelineMarker.commands module<a class="headerlink" href="#module-timelineMarker.commands" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="timelineMarker.commands.add">
+<code class="descclassname">timelineMarker.commands.</code><code class="descname">add</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#timelineMarker.commands.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this function to add markers with the provided arguments. If a marker
+already exists on the provided frame number, the old data will be 
+overwritten.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>timelineMarker</strong> (<a class="reference internal" href="timelineMarker.ui.html#timelineMarker.ui.TimelineMarker" title="timelineMarker.ui.TimelineMarker"><em>TimelineMarker</em></a>) – decorator handles this argument</li>
+<li><strong>frame</strong> (<em>str</em>) – Frame number</li>
+<li><strong>color</strong> (<em>str</em>) – Color list [R, G, B], values between 0-255</li>
+<li><strong>comment</strong> (<em>str</em>) – Comment</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="timelineMarker.commands.clear">
+<code class="descclassname">timelineMarker.commands.</code><code class="descname">clear</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#timelineMarker.commands.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this function to remove all markers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timelineMarker</strong> (<a class="reference internal" href="timelineMarker.ui.html#timelineMarker.ui.TimelineMarker" title="timelineMarker.ui.TimelineMarker"><em>TimelineMarker</em></a>) – decorator handles this argument</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="timelineMarker.commands.remove">
+<code class="descclassname">timelineMarker.commands.</code><code class="descname">remove</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#timelineMarker.commands.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this function to remove markers with the provided arguments.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>timelineMarker</strong> (<a class="reference internal" href="timelineMarker.ui.html#timelineMarker.ui.TimelineMarker" title="timelineMarker.ui.TimelineMarker"><em>TimelineMarker</em></a>) – decorator handles this argument</li>
+<li><strong>frames</strong> (<em>int/list</em>) – Frame numbers</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="timelineMarker.commands.set">
+<code class="descclassname">timelineMarker.commands.</code><code class="descname">set</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#timelineMarker.commands.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this function to overwrite the entire marker data set with the 
+provided arguments. All existing markers will be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>timelineMarker</strong> (<a class="reference internal" href="timelineMarker.ui.html#timelineMarker.ui.TimelineMarker" title="timelineMarker.ui.TimelineMarker"><em>TimelineMarker</em></a>) – decorator handles this argument</li>
+<li><strong>frames</strong> (<em>list</em>) – Frame numbers</li>
+<li><strong>colors</strong> (<em>list</em>) – Color list [R, G, B], values between 0-255</li>
+<li><strong>comments</strong> (<em>list</em>) – Comments</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/timelineMarker.commands.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">timelineMarker  &#39;&#39; documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, &#39;Robert Joosten&#39;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+  </body>
+</html>

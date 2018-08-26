@@ -1,0 +1,19 @@
+timelineMarker package
+======================
+
+.. automodule:: timelineMarker
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   timelineMarker.commands
+   timelineMarker.decorators
+   timelineMarker.hotkey
+   timelineMarker.ui
+   timelineMarker.utils
+

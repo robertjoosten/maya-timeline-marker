@@ -1,0 +1,7 @@
+timelineMarker\.hotkey module
+=============================
+
+.. automodule:: timelineMarker.hotkey
+    :members:
+    :undoc-members:
+    :show-inheritance:
