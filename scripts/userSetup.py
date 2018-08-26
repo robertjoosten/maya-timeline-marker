@@ -1,2 +1,4 @@
 import maya.cmds as cmds
-cmds.evalDeferred("import timelineMarker; timelineMarker.install()")
+
+import timelineMarker
+cmds.evalDeferred(timelineMarker.install)
