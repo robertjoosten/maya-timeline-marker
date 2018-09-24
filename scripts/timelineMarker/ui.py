@@ -117,7 +117,7 @@ class TimelineMarker(utils.QWidget):
         and commented, if so the toolTip will show.
         """
         if event.type() == utils.QEvent.ToolTip:
-            utils.utils.QToolTip.hideText() 
+            utils.QToolTip.hideText() 
             
             # find frame at mouse pointer
             frame = int(((event.x()-(self.total*0.005))/self.step)+self.start)
