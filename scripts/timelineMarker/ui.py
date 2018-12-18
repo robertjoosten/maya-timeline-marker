@@ -221,9 +221,15 @@ class TimelineMarker(utils.QWidget):
         is not important ( no automated shifting of markers ), no range will 
         be stored.
         """
+        # variable
+        timeline = utils.getMayaTimeline()
+
+        # restore sound scrub
+        cmds.timeControl(timeline, edit=True, beginScrub=True)
+
         # get visible range
         rangeVisible = cmds.timeControl(
-            utils.getMayaTimeline(), 
+            timeline,
             q=True, 
             rangeVisible=True
         )
@@ -242,6 +248,12 @@ class TimelineMarker(utils.QWidget):
         Theuser settings will be checked if the moving of markers is 
         appropriate.
         """
+        # variable
+        timeline = utils.getMayaTimeline()
+
+        # restore sound scrub
+        cmds.timeControl(timeline, edit=True, endScrub=True)
+
         # check if markers need to be shifted
         if not self._range or not self.menu.moveA.isChecked():
             return
@@ -258,7 +270,7 @@ class TimelineMarker(utils.QWidget):
         endLenght = len(endRange)
         
         rangeVisible = cmds.timeControl(
-            utils.getMayaTimeline(), 
+            timeline,
             q=True, 
             rangeVisible=True
         )

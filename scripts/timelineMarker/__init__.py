@@ -48,5 +48,5 @@ from .hotkey import *
 from .commands import *
 
 __author__    = "Robert Joosten"
-__version__   = "2.0.1"
+__version__   = "2.0.2"
 __email__     = "rwm.joosten@gmail.com"
