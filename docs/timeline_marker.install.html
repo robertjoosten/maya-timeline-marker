@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>timelineMarker.decorators module &#8212; timelineMarker  &#39;&#39; documentation</title>
+    <title>timeline_marker.install module &#8212; timeline_marker  &#39;&#39; documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -34,7 +34,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">timelineMarker  &#39;&#39; documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">timeline_marker  &#39;&#39; documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -43,19 +43,19 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-timelineMarker.decorators">
-<span id="timelinemarker-decorators-module"></span><h1>timelineMarker.decorators module<a class="headerlink" href="#module-timelineMarker.decorators" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-timeline_marker.install">
+<span id="timeline-marker-install-module"></span><h1>timeline_marker.install module<a class="headerlink" href="#module-timeline_marker.install" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="timelineMarker.decorators.getTimelineMarker">
-<code class="descclassname">timelineMarker.decorators.</code><code class="descname">getTimelineMarker</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#timelineMarker.decorators.getTimelineMarker" title="Permalink to this definition">¶</a></dt>
-<dd><p>This decorator will only run the function if the timeline marker can be 
-found, if this is not the case an error will be raised. The timeline 
-marker will be parsed as the first argument into the function provided.</p>
+<dt id="timeline_marker.install.execute">
+<code class="descclassname">timeline_marker.install.</code><code class="descname">execute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#timeline_marker.install.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the timeline marker functionality to Maya’s native timeline and
+extend its native menu with actions to manipulate the timeline
+markers.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>ValueError</strong> – if timeline marker doesn’t exist</td>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>RuntimeError</strong> – When the timeline marker is already installed.</td>
 </tr>
 </tbody>
 </table>
@@ -72,7 +72,7 @@ marker will be parsed as the first argument into the function provided.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/timelineMarker.decorators.rst.txt"
+      <li><a href="_sources/timeline_marker.install.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -99,11 +99,11 @@ marker will be parsed as the first argument into the function provided.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">timelineMarker  &#39;&#39; documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">timeline_marker  &#39;&#39; documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, &#39;Robert Joosten&#39;.
+        &#169; Copyright 2021, &#39;Robert Joosten&#39;.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>

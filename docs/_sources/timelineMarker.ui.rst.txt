@@ -1,7 +1,0 @@
-timelineMarker\.ui module
-=========================
-
-.. automodule:: timelineMarker.ui
-    :members:
-    :undoc-members:
-    :show-inheritance:

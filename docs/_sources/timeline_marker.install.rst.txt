@@ -1,0 +1,7 @@
+timeline\_marker\.install module
+================================
+
+.. automodule:: timeline_marker.install
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,17 @@
+timeline\_marker package
+========================
+
+.. automodule:: timeline_marker
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+
+   timeline_marker.install
+   timeline_marker.ui
+   timeline_marker.utils
+

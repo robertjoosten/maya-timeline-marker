@@ -1,7 +1,0 @@
-timelineMarker\.decorators module
-=================================
-
-.. automodule:: timelineMarker.decorators
-    :members:
-    :undoc-members:
-    :show-inheritance:

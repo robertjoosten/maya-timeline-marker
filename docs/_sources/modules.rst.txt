@@ -1,7 +1,7 @@
-timelineMarker
-==============
+timeline_marker
+===============
 
 .. toctree::
    :maxdepth: 4
 
-   timelineMarker
+   timeline_marker

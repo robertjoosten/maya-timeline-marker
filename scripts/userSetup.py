@@ -1,5 +1,10 @@
-import maya.cmds as cmds
+from maya import cmds
+
+
+def main():
+    from timeline_marker import install
+    install.execute()
+
 
 if not cmds.about(batch=True):
-    import timelineMarker
-    cmds.evalDeferred(timelineMarker.install)
+    cmds.evalDeferred(main)
