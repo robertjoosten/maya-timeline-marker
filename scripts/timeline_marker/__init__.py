@@ -33,5 +33,5 @@ Make sure the language is set to python.
     
 """
 __author__    = "Robert Joosten"
-__version__   = "3.0.0"
+__version__   = "3.0.1"
 __email__     = "rwm.joosten@gmail.com"

@@ -2,7 +2,7 @@ import logging
 from maya import mel
 from PySide2 import QtWidgets, QtGui
 
-from timeline_marker.ui import TimelineMarker
+from timeline_marker.ui import TimelineMarkerManager
 from timeline_marker import utils
 
 
@@ -18,7 +18,7 @@ def execute():
     :raises RuntimeError: When the timeline marker is already installed.
     """
     # validate timeline marker
-    if TimelineMarker.instance is not None:
+    if TimelineMarkerManager.instance is not None:
         raise RuntimeError("timeline-marker has already been installed.")
 
     # get parent
@@ -32,7 +32,7 @@ def execute():
         parent.setLayout(layout)
 
     # create timeline marker
-    timeline_marker = TimelineMarker(parent)
+    timeline_marker = TimelineMarkerManager.create(parent)
     layout.addWidget(timeline_marker)
 
     log.info("timeline-marker installed successfully.")
