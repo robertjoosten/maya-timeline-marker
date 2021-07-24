@@ -15,39 +15,18 @@ TIMELINE_MARKER_OLD = "timelineMarker"
 class TimelineMark(object):
     slots = ("colour", "comment", )
 
-    def __init__(self, colour=None, comment=None):
+    def __init__(self, colour=(0, 255, 0), comment=""):
         self.colour = colour
         self.comment = comment
 
 
-class TimelineMarkerManager(object):
+class TimelineMarker(QtWidgets.QWidget):
     """
-    This manager is required as in certain version of PySide2 the __new__
-    method is not allowed to be subclasses which makes it not possible to
-    create a singleton.
+    Unable to subclass the __new__ method in certain versions of PySide2,
+    we manage the instance ourselves but unable to make a true singleton.
     """
     instance = None
 
-    @classmethod
-    def create(cls, parent):
-        if cls.instance is None:
-            cls.instance = TimelineMarker(parent)
-
-        return cls.instance
-
-    @classmethod
-    def get_instance(cls):
-        """
-        :return: Timeline marker instance
-        :rtype: TimelineMarker
-        """
-        if cls.instance is None:
-            raise RuntimeError("TimelineMarker has no instance, initialize first.")
-
-        return cls.instance
-
-
-class TimelineMarker(QtWidgets.QWidget):
     def __init__(self, parent):
         super(TimelineMarker, self).__init__(parent)
 
@@ -107,6 +86,17 @@ class TimelineMarker(QtWidgets.QWidget):
         self.load_from_scene()
         self.register_callbacks()
 
+    @classmethod
+    def get_instance(cls):
+        """
+        :return: Timeline marker instance
+        :rtype: TimelineMarker
+        """
+        if cls.instance is None:
+            raise RuntimeError("TimelineMarker has no instance, initialize first.")
+
+        return cls.instance
+
     # ------------------------------------------------------------------------
 
     def paintEvent(self, event):
@@ -137,6 +127,9 @@ class TimelineMarker(QtWidgets.QWidget):
 
         # draw lines for each frame
         for frame, frame_data in self.data.items():
+            if not self.start <= frame <= self.end:
+                continue
+
             r, g, b = frame_data.colour
             pen.setColor(QtGui.QColor(r, g, b, 50))
 
@@ -295,7 +288,7 @@ class TimelineMarker(QtWidgets.QWidget):
         :param list[int] colour:
         :param str comment:
         """
-        instance = TimelineMarkerManager.get_instance()
+        instance = cls.get_instance()
         instance.data[frame] = TimelineMark(colour, comment)
         instance.update()
 
@@ -306,7 +299,7 @@ class TimelineMarker(QtWidgets.QWidget):
         :param list colours:
         :param list comments:
         """
-        instance = TimelineMarkerManager.get_instance()
+        instance = cls.get_instance()
         instance.data.clear()
         for frame, colour, comment in zip(frames, colours, comments):
             instance.data[frame] = TimelineMark(colour, comment)
@@ -317,7 +310,7 @@ class TimelineMarker(QtWidgets.QWidget):
         """
         :param int frames: Frame number
         """
-        instance = TimelineMarkerManager.get_instance()
+        instance = cls.get_instance()
         for frame in frames:
             instance.data.pop(frame, None)
         instance.update()
@@ -327,7 +320,7 @@ class TimelineMarker(QtWidgets.QWidget):
         """
         Remove all markers.
         """
-        instance = TimelineMarkerManager.get_instance()
+        instance = cls.get_instance()
         instance.data.clear()
         instance.update()
 
