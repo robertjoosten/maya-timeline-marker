@@ -2,7 +2,6 @@ import json
 from maya import mel
 from maya import cmds
 from maya.api import OpenMaya
-from collections import defaultdict
 from PySide2 import QtWidgets, QtGui, QtCore
 
 from timeline_marker import utils
@@ -13,6 +12,11 @@ TIMELINE_MARKER_OLD = "timelineMarker"
 
 
 class TimelineMark(object):
+    """
+    The time line mark class contains the colour and comment. Due to the mark
+    sometimes being added for unknown reason an enabled state has been added
+    to ensure default initialization doesn't cause the mark to be drawn.
+    """
     slots = ("colour", "comment", )
 
     def __init__(self, colour=(0, 255, 0), comment=""):
@@ -36,7 +40,7 @@ class TimelineMarker(QtWidgets.QWidget):
         self.total = None
         self.step = None
 
-        self.data = defaultdict(TimelineMark)
+        self.data = {}
         self.range = None
         self.callbacks = []
 
@@ -155,7 +159,9 @@ class TimelineMarker(QtWidgets.QWidget):
             QtWidgets.QToolTip.hideText()
 
             frame = int(((event.x() - (self.total * 0.005)) / self.step) + self.start)
-            QtWidgets.QToolTip.showText(event.globalPos(), self.data[frame].comment, self)
+            frame_data = self.data.get(frame)
+            if frame_data is not None:
+                QtWidgets.QToolTip.showText(event.globalPos(), frame_data.comment, self)
 
         return super(TimelineMarker, self).event(event)
 
@@ -281,7 +287,7 @@ class TimelineMarker(QtWidgets.QWidget):
     @classmethod
     def add(cls, frame, colour, comment):
         """
-        Add a marker based on the provided arguanments. If the frames are
+        Add a marker based on the provided arguments. If the frames are
         already marked this information will be overwritten.
 
         :param int frame:
